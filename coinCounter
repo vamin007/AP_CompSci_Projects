@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class Lab_2
+{
+    public static void main(String[] args){
+        
+        
+        Scanner scan = new Scanner(System.in);
+        
+        System.out.print("Greetings! What is your name?");
+        String name = scan.nextLine();
+        
+        System.out.println();
+        
+        System.out.print("Welcome," + name + "! Enter the number of cents you have:");
+        double coins = scan.nextDouble();
+        
+        System.out.println();
+        
+        int quarters = (int)(coins/25);
+                
+        int dimes = (int)((coins-quarters*25)/10);
+        
+        int nickels = (int)((coins-(quarters*25+dimes*10))/5);
+        
+        int pennies = (int)(coins-(quarters*25+dimes*10+nickels*5));
+        
+        System.out.println("You have " + quarters + " quarter(s), " + dimes + " dime(s), " + nickels + " nickel(s), and " + pennies + " penny(ies).");
+        
+        int total_coins = quarters+dimes+nickels+pennies;
+        System.out.println("You have " + total_coins + " coin(s).");
+        
+        boolean evenCoins = total_coins%2 ==0;
+        System.out.println("Is your number of coins even? " + evenCoins);
+        
+        scan.close();
+    }
+}
