@@ -1,0 +1,113 @@
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("Enter a number:");
+        int num = scan.nextInt();
+        System.out.println("This number has " + countFactors(num) + " factors.");
+        boolean prime = isPrime(num);
+
+        if(prime == true){
+            System.out.println("This number is prime.");
+        }
+        else if (prime == false) {
+            System.out.println("This number is not prime.");
+        }
+
+        System.out.println("There are " + countPrimes(num) + " prime numbers that are less than or equal to it.");
+
+
+        String coinSide = "";
+        while(!coinSide.equalsIgnoreCase("h") || !coinSide.equalsIgnoreCase("t")){
+                System.out.print("Heads (H) or tails (T)?");
+                coinSide = scan.next();
+                if(coinSide.equalsIgnoreCase("h") || coinSide.equalsIgnoreCase("t")){
+                    break;
+                }
+            }
+        char side = 0;
+
+        String HorT = "";
+        if(coinSide.equalsIgnoreCase("H")){
+            side = 'H';
+            HorT = "heads";
+        }
+        else if(coinSide.equalsIgnoreCase("T")){
+            side = 'T';
+            HorT = "tails";
+        }
+
+        System.out.print("How many in a row?");
+        int streak = scan.nextInt();
+        System.out.println(generateCoinSeq(side,streak));
+
+        System.out.println("You got " + streak + " " + HorT + " in a row!");
+        scan.close();
+
+    }
+
+
+    public static int countFactors(int num){
+
+        int count = 0;
+
+        for (int i =1;i<= num; i++){
+
+            if(num % i ==0){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static boolean isPrime(int num){
+
+        for(int i=2; i< num;i++){
+            if(num%i==0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static int countPrimes(int num) {
+
+        int count = 0;
+
+        for(int i = 2;i <= num; i++){
+            if(isPrime(i)){
+                count+=1;
+            }
+        }
+       return count;
+    }
+    public static String generateCoinSeq(char hOrT, int streak) {
+
+        int count = 0;
+        String flip = "";
+        while(count < streak){
+
+            double coinSide =Math.random();
+            if(coinSide <0.5){
+                flip+= "H" + " ";
+            }
+
+            else if(coinSide >0.5){
+                flip +="T" + " ";
+            }
+            if(flip.charAt(flip.length()-2) == hOrT){
+                count++;
+            }
+            if(flip.charAt(flip.length()-2) != hOrT){
+                count = 0;
+            }
+        }
+        return flip;
+    }
+}
+Lab6.java
+Displaying Lab6.java.
