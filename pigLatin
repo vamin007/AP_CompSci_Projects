@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class Main {
+    private static Scanner sc = new Scanner(System.in);
+    public static void nameEntry(){
+
+        System.out.println("Enter you full name:");
+        String name = sc.nextLine();
+        System.out.println("First name: " + name.substring(0, name.indexOf(" ")));
+        name = name.substring(name.indexOf(" ")+1);
+        System.out.println("Middle name: " + name.substring(0, name.indexOf(" ")));
+        name = name.substring(name.indexOf(" ")+1);
+        System.out.println("Middle name: "+ name);
+    }
+    public static void pigLatin(){
+        System.out.println("Now, enter a word: ");
+        String word = sc.nextLine();
+        char pig = word.charAt(0);
+        String latin = word.substring(1);
+        String pig_Latin = latin + pig + "ay";
+        System.out.println("What do you think the word should be in Pig Latin?");
+        String guess = sc.nextLine();
+        System.out.println("The correct translation is : " + pig_Latin);
+        System.out.print("Did you guess the right word? " + guess.equals(pig_Latin));
+    }
+    public static void main(String[] args) {
+    nameEntry();
+    pigLatin();
+        sc.close();
+    }
+
+}
