@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        // X and Y coordinates
+        System.out.println("Enter a number to randomize the min value of an "
+                + "x-coordinate:");
+        int minX = scan.nextInt();
+
+        System.out.println("Enter a number to randomize the max value of an "
+                + "x-coordinate:");
+        int maxX = scan.nextInt();
+
+        System.out.println("Enter a number to randomize the min value of an "
+                + "y-coordinate:");
+        int minY = scan.nextInt();
+
+        System.out.println("Enter a number to randomize the max value of an "
+                + "y-coordinate:");
+        int maxY = scan.nextInt();
+
+
+        //generates two random points and prints points and distance
+        int x1 = randomize(minX, maxX);
+        int y1 = randomize(minY, maxY);
+
+        int x2 = randomize(minX, maxX);
+        int y2 = randomize(minY, maxY);
+
+        double distance = distanceFormula(x1,x2,y1,y2);
+        System.out.println("The first point is at (" + x1 + "," + y1 + "), and "
+                + "the second point is at (" + x2 + "," + y2 + ").");
+
+        System.out.println("The distance between the points is " + distance + ". \n");
+
+        //create points for quadratic formula and print the solutions
+        int a = randomize(2, 11);
+        int b = randomize(22, 31);
+        int c = randomize(-10, 9);
+
+        double posQuad = quadFormPlus(a,b,c);
+        double negQuad = quadFormMinus(a,b,c);
+
+        System.out.println(a + ", " + b + ", " + c);
+        System.out.println("The quadratic formula results in " + posQuad + " and " + negQuad);
+
+
+        scan.close();
+    }
+
+    //randomize between two given numbers
+    public static int randomize(int min, int max) {
+
+        int num = (int) (Math.random() * (max - min + 1) + min);
+        return num;
+    }
+
+    //finds distance between two given points
+    public static double distanceFormula(int x1, int x2, int y1, int y2) {
+
+        double dist = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        return dist;
+    }
+    //quadratic formula calculators
+    public static double quadFormPlus(int a, int b, int c) {
+
+        double quad =( -1 * b + (Math.sqrt(Math.pow(b,2)) - 4 * a * c)) / (2 * a);
+        return quad;
+    }
+
+    public static double quadFormMinus(int a, int b, int c) {
+
+        double quad =( -1 * b - (Math.sqrt(Math.pow(b,2)) - 4 * a * c)) / (2 * a);
+        return quad;
+    }
+}
